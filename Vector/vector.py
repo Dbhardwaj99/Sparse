@@ -1,5 +1,7 @@
-from make_vectors import Vector
-from global_vector import globalvector
+from global_document import globalvector
+import time
+
+tic = time.perf_counter()
 
 original_document = {
   0:'''At Scale You Will Hit Every Performance Issue I used to think I knew a bit about performance scalability and how to keep things trucking when you hit large amounts of data Truth is I know diddly squat on the subject since the most I have ever done is read about how its done To understand how I came about realising this you need some background''',
@@ -12,6 +14,7 @@ original_document = {
 }
 
 
+
 vectordb = globalvector(original_document)
 
 vectordb.createdocumentlist()
@@ -22,3 +25,17 @@ vectordb.generateIDFScore()
 vectordb.generateTFIDFScores()
 
 
+query = "GIT use SVN sites"
+results = vectordb.search(query)
+
+if results:
+    print(f"Results for the query '{query}':")
+    for similarity, doc_idx in results:
+        print(f"Document {doc_idx + 1} (Cosine Similarity: {similarity:.4f})")
+else:
+    print(f"No documents found for the query '{query}'.")
+
+toc = time.perf_counter()
+
+
+print("Time: " + str(toc-tic))

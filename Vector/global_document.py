@@ -1,7 +1,7 @@
-from make_vectors import Vector
+from vector_document import Vector
 import math
 from collections import defaultdict
-from misc import process_query, generate_tf_idf_score
+from utils import process_query, generate_tf_idf_score, calculate_consine_similarity
 
 class globalvector:
     def __init__(self, documents) -> None:
@@ -35,21 +35,26 @@ class globalvector:
     
     def generateTFIDFScores(self):
         for document in self.documentList:
-            tf_idf_vector = []
-
-            for word in self.vocabulary:
-                tf = document.wordcountDict.get(word, 0) / len(document.bagOfWords)
-                tf_idf_score = tf * self.idfScores[word]
-
-                tf_idf_vector.append(tf_idf_score)
-
-            document.tf_idf_vector = tf_idf_vector
-            print(tf_idf_vector)
+            document.tf_idf_vector = generate_tf_idf_score(document, self.vocabulary, self.idfScores)
 
     def search(self, queried_string):
         query_tf_idf = process_query(queried_string, self.vocabulary, self.idfScores)
 
-        
+        similarities = []
+
+        for idx, document in enumerate(self.documentList):
+            similarity = calculate_consine_similarity(query_tf_idf, document.tf_idf_vector)
+            similarities.append((similarity, idx))
+
+        similarities.sort(reverse=True, key= lambda x: x[0])
+        return similarities
+
+
+
+
+
+
+
     
 
 
