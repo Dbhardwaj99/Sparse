@@ -1,4 +1,4 @@
-from vector_document import Vector
+from Engine.vector_document import Vector
 import math
 
 def generate_tf_idf_score(vector, vocabulary, idf):
@@ -21,10 +21,8 @@ def calculate_consine_similarity(query_tfidf, document_tfidf):
 
     magnitude_query = math.sqrt(sum(v1**2 for v1 in query_tfidf))
     magnitude_document = math.sqrt(sum(v2**2 for v2 in document_tfidf))\
-    
+
     if not magnitude_query or not magnitude_document:
         return 0.00
-    
+
     return dot_product/(magnitude_document * magnitude_query)
-
-

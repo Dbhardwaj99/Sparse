@@ -1,8 +1,3 @@
-from global_document import globalvector
-import time
-
-tic = time.perf_counter()
-
 original_document = {
   0:'''At Scale You Will Hit Every Performance Issue I used to think I knew a bit about performance scalability and how to keep things trucking when you hit large amounts of data Truth is I know diddly squat on the subject since the most I have ever done is read about how its done To understand how I came about realising this you need some background''',
   1:'''Richard Stallman to visit Australia Im not usually one to promote events and the like unless I feel there is a genuine benefit to be had by attending but this is one stands out Richard M Stallman the guru of Free Software is coming Down Under to hold a talk You can read about him here Open Source Celebrity to visit Australia''',
@@ -12,30 +7,3 @@ original_document = {
   5:'''Setting up GIT to use a Subversion SVN style workflow Moving from Subversion SVN to GIT can be a little confusing at first I think the biggest thing I noticed was that GIT doesnt have a specific workflow you have to pick your own Personally I wanted to stick to my Subversion like work-flow with a central server which all my machines would pull and push too Since it took a while to set up I thought I would throw up a blog post on how to do it''',
   6:'''Why CAPTCHA Never Use Numbers 0 1 5 7 Interestingly this sort of question pops up a lot in my referring search term stats Why CAPTCHAs never use the numbers 0 1 5 7 Its a relativity simple question with a reasonably simple answer Its because each of the above numbers are easy to confuse with a letter See the below''',
 }
-
-
-
-vectordb = globalvector(original_document)
-
-vectordb.createdocumentlist()
-vectordb.createvocabulary()
-
-vectordb.generateIDFScore()
-
-vectordb.generateTFIDFScores()
-
-
-query = "GIT use SVN sites"
-results = vectordb.search(query)
-
-if results:
-    print(f"Results for the query '{query}':")
-    for similarity, doc_idx in results:
-        print(f"Document {doc_idx + 1} (Cosine Similarity: {similarity:.4f})")
-else:
-    print(f"No documents found for the query '{query}'.")
-
-toc = time.perf_counter()
-
-
-print("Time: " + str(toc-tic))
