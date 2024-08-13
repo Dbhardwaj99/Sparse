@@ -1,7 +1,7 @@
 from Engine.vector_document import Vector
 import math
 from collections import defaultdict
-from Engine.utils import process_query, generate_tf_idf_score, calculate_consine_similarity
+from Engine.utils import process_query, generate_tf_idf_score, calculate_consine_similarity, findWords
 
 class globalvector:
     def __init__(self, documents) -> None:
@@ -47,13 +47,19 @@ class globalvector:
             document.tf_idf_vector = generate_tf_idf_score(document, self.vocabulary, self.idfScores)
 
     def search(self, queried_string):
-        query_tf_idf = process_query(queried_string, self.vocabulary, self.idfScores)
+        quried_vector = process_query(queried_string, self.vocabulary, self.idfScores)
 
         similarities = []
 
         for idx, document in enumerate(self.documentList):
-            similarity = calculate_consine_similarity(query_tf_idf, document.tf_idf_vector)
-            similarities.append((similarity, idx, document.originalDoc))
+            similarity = calculate_consine_similarity(quried_vector.tf_idf_vector, document.tf_idf_vector)
 
+            words = []
+
+            if similarity > 0.0:
+                words = findWords(quried_vector, document)
+
+            similarities.append((similarity, idx, document.originalDoc, words))
+# pass all the results to a searh result class and then reuturn the class
         similarities.sort(reverse=True, key= lambda x: x[0])
         return similarities
