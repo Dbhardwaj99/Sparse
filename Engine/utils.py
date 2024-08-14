@@ -35,7 +35,7 @@ def calculate_consine_similarity(query_tfidf, document_tfidf):
 def findWords(queried_vector, document_vector):
     #import the two vectors and we can compare better using the bag of words and the tfidf vector
 
-    common_words = set(queried_vector.bagOfWords).intersection(set(document_vector.bagOfWords))
+    common_words = set(queried_vector.bagOfWords).intersection(set(document_vector.bagOfWordsu))
 
     position_word = []
 
