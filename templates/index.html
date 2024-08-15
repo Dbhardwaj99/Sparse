@@ -5,6 +5,15 @@
     <body>
         <h1>Home</h1>
         <p>Welcome to the home page.</p>
-        <!-- <form  -->
+        <form method="POST" action="/api">
+            <input
+                type="text"
+                name="query"
+                placeholder="Search Anything"
+                required
+            />
+            <button type="submit">Search</button>
+        </form>
+        <h2>Recent Searches</h2>
     </body>
 </html>

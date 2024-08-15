@@ -8,20 +8,22 @@ app = Flask(__name__)
 
 @app.route('/api', methods=['POST'])
 def api():
-    data = request.get_json()
-    query = data.get('query')
+    # data = request.get_json()
+    # query = data.get('query')
+    query = request.form['query']
     DB = createVectorDB()
     results = searchDB(str(query), DB)
     return jsonify(results)
 
 @app.route('/home', methods=['POST'])
 def search():
-    data = request.get_json()
-    query = data.get('query')
+    # data = request.get_json()
+    # query = data.get('query')
+    query = request.form['query']
     DB = createVectorDB()
     results = searchDB(query, DB)
     #render a page and pass the results to display there
-    pass
+    return render_template('search.html', results=results)
 
 @app.route('/', methods=['GET'])
 def hello():
