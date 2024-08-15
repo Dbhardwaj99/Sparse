@@ -1,7 +1,7 @@
 import time
 from Engine.document import original_document
 from Engine.global_document import globalvector
-from Engine.search import SearchItem
+# from Engine.search import SearchItem
 # import document, global_document
 
 def createVectorDB():
@@ -23,21 +23,24 @@ def searchDB(query, db):
     results  = db.search(query)
     # results = SearchItem(query, db)
     # results.search()
+    actual_results = []
+    for similarity, doc_idx, doc, words in results:
+        if similarity > 0.0:
+            actual_results.append((similarity, doc_idx, doc, words))
 
-    if results:
-        print_result(results, query)
-        pass
+    if actual_results:
+        print_result(actual_results, query)
+        return actual_results
     else:
         print(f"No documents found for the query '{query}'.")
 
+    return None
     toc = time.perf_counter()
     print("Time: " + str(toc-tic))
 
 def colorPrint(word, doc):
    # example of word : Document 6 (Cosine Similarity: 0.0616)
     # words: [('captcha', [0], [4, 126])]
-
-
     pass
 
 def print_result(results, query):

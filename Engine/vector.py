@@ -22,6 +22,7 @@ def searchDB(query, db):
     if results:
         print(f"Results for the query '{query}':")
         for similarity, doc_idx in results:
-            print(f"Document {doc_idx} (Cosine Similarity: {similarity:.4f})")
+            if similarity > 0.0:
+                print(f"Document {doc_idx} (Cosine Similarity: {similarity:.4f})")
     else:
         print(f"No documents found for the query '{query}'.")

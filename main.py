@@ -6,4 +6,4 @@ DB = createVectorDB()
 
 searchQuery = input("Enter query: ")
 
-searchDB(searchQuery, DB)
+results = searchDB(searchQuery, DB)
