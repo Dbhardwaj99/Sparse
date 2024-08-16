@@ -1,0 +1,14 @@
+[
+  [
+    "similarity_score",
+    "document_index",
+    "the_document",
+    [
+      [
+        "queried_word",
+        "[index_queried_word]",
+        "[index_of_the_word_in_the_document]"
+      ]
+    ]
+  ]
+]

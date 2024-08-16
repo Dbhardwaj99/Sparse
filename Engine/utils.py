@@ -14,7 +14,7 @@ def generate_tf_idf_score(vector, vocabulary, idf):
     return tf_idf_vector
 
 def process_query(query, volabulary, idf):
-    query_vector = Vector(query)
+    query_vector = Vector(query.lower())
     query_vector.generatewordcountDict()
     queredied_tf_idf_score = generate_tf_idf_score(query_vector, volabulary, idf)
     query_vector.tf_idf_vector = queredied_tf_idf_score

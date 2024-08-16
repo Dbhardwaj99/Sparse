@@ -5,7 +5,7 @@
     <body>
         <h1>Home</h1>
         <p>Welcome to the home page.</p>
-        <form method="POST" action="/api">
+        <form method="POST" action="/home">
             <input
                 type="text"
                 name="query"
@@ -14,6 +14,21 @@
             />
             <button type="submit">Search</button>
         </form>
-        <h2>Recent Searches</h2>
+
+        {% if results %}
+        <h2>Search Results for "{{ query }}:"</h2>
+        <ul>
+            {% for result in results %}
+            <li>
+                <h3>Word found: {{ result[3][0][0] }}</h3>
+                <b>Document id: </b> {{ result[1] }}
+                <br />
+                <b>Document: </b> {{ result[2] }}
+                <br />
+                <b>Cosine Similarity: </b> {{ result[0] }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </body>
 </html>

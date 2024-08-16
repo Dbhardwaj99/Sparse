@@ -63,3 +63,21 @@ class globalvector:
 # pass all the results to a searh result class and then reuturn the class
         similarities.sort(reverse=True, key= lambda x: x[0])
         return similarities
+
+
+
+# dummy data:
+    # [
+    #   [
+    #       similarity_score
+    #       document_index
+    #       the_document
+    #       [
+    #           [
+    #               queried_word
+    #               [index_queried_word]
+    #               [index_of_the_word_in_the_document]
+    #           ]
+    #       ]
+    #   ]
+    # ]
