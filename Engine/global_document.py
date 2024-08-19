@@ -1,6 +1,6 @@
 from Engine.vector_document import Vector
 import math
-from search import WordsFound, SearchItem
+from .search import WordsFound, SearchItem
 from collections import defaultdict
 from Engine.utils import process_query, generate_tf_idf_score, calculate_consine_similarity, findWords
 

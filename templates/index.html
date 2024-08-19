@@ -1,34 +1,121 @@
-<html>
-    <head>
-        <title>Home</title>
-    </head>
-    <body>
-        <h1>Home</h1>
-        <p>Welcome to the home page.</p>
-        <form method="POST" action="/home">
-            <input
-                type="text"
-                name="query"
-                placeholder="Search Anything"
-                required
-            />
-            <button type="submit">Search</button>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body
+    style="
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    "
+  >
+    <div
+      style="
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <header style="text-align: center; margin-bottom: 30px">
+        <h1 style="font-size: 2.8em; color: #007bff; font-weight: 600">Home</h1>
+      </header>
+      <main>
+        <p
+          style="
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #555;
+          "
+        >
+          Welcome to the home page. Explore our features and search for your
+          queries.
+        </p>
+        <form
+          method="POST"
+          action="/home"
+          style="display: flex; justify-content: center; margin-bottom: 30px"
+        >
+          <input
+            type="text"
+            name="query"
+            style="
+              padding: 12px 20px;
+              border: 1px solid #ccc;
+              border-radius: 6px;
+              width: 300px;
+              font-size: 1em;
+              outline: none;
+              transition: border-color 0.3s, box-shadow 0.3s;
+              box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            "
+            placeholder="Search Anything"
+            required
+          />
+          <button
+            type="submit"
+            style="
+              padding: 12px 20px;
+              border: none;
+              border-radius: 6px;
+              background-color: #007bff;
+              color: #fff;
+              font-size: 1em;
+              cursor: pointer;
+              margin-left: 10px;
+              transition: background-color 0.3s, transform 0.2s;
+              transform: scale(1);
+            "
+          >
+            Search
+          </button>
         </form>
 
         {% if results %}
-        <h2>Search Results for "{{ query }}:"</h2>
-        <ul>
+        <section style="margin-top: 30px">
+          <h2
+            style="
+              font-size: 1.8em;
+              margin-bottom: 20px;
+              color: #333;
+              font-weight: 500;
+            "
+          >
+            Search Results for "{{ query }}:"
+          </h2>
+          <ul style="list-style-type: none; padding: 0">
             {% for result in results %}
-            <li>
-                <h3>Word found: {{ result[3][0][0] }}</h3>
-                <b>Document id: </b> {{ result[1] }}
-                <br />
-                <b>Document: </b> {{ result[2] }}
-                <br />
-                <b>Cosine Similarity: </b> {{ result[0] }}
+            <li
+              style="
+                border-bottom: 1px solid #e0e0e0;
+                padding: 15px 0;
+                transition: background-color 0.3s;
+                background-color: #f9f9f9;
+              "
+            >
+              <h3 style="font-size: 1.4em; color: #007bff; margin-bottom: 10px">
+                Word found: {{ result[3][0][0] }}
+              </h3>
+              <p style="margin: 5px 0"><b>Document ID:</b> {{ result[1] }}</p>
+              <p style="margin: 5px 0"><b>Document:</b> {{ result[2] }}</p>
+              <p style="margin: 5px 0">
+                <b>Cosine Similarity:</b> {{ result[0] }}
+              </p>
             </li>
             {% endfor %}
-        </ul>
+          </ul>
+        </section>
         {% endif %}
-    </body>
+      </main>
+    </div>
+  </body>
 </html>
