@@ -10,3 +10,6 @@ class SearchItem:
         self.documentIndex = idx
         self.document = document
         self.words = wordFoundArray
+
+    def doNothing(self):
+        pass
